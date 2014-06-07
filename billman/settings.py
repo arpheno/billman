@@ -38,6 +38,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 )
 
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

@@ -1,0 +1,19 @@
+{% extends "content.html" %}
+
+{% block title %}Create an account{% endblock %}
+
+{% block content %}
+    {% if form.errors %}
+        <div class="alert alert-danger">{{ form.errors }}</div>
+    {% endif %}
+    <form action="" method="post" role="form" style="padding: 5px 0px;">
+	    {% csrf_token %}
+        <p><input id="id_username" maxlength="30" name="username" type="text" class="form-control" placeholder="Username" required autofocus /></p>
+        <p class="alert alert-info">Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
+        <p><input id="id_password1" name="password1" type="password" class="form-control" placeholder="Password" required /></p>
+        <p><input id="id_password2" name="password2" type="password" class="form-control" placeholder="Password confirmation" required /></p>
+        <p class="alert alert-info">Enter the same password as above, for verification.</p>
+        <p><input class="btn btn-lg btn-success btn-block" type="submit" value="Create the account" /></p>
+        <p><a href="{% url 'login' %}" class="btn btn-lg btn-primary btn-block">Login</a></p>
+    </form>
+{% endblock %}
