@@ -36,6 +36,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'account',
+    'bill',
 )
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)

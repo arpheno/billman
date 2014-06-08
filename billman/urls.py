@@ -23,4 +23,7 @@ urlpatterns = patterns('',
     url(r'^accounts/password/reset/complete/$', 'django.contrib.auth.views.password_reset_complete', name='password_reset_complete'),
     url(r'^accounts/register/$', 'account.views.register', name='register'),
     url(r'^accounts/register/done/$', 'account.views.register_done', name='register_done'),
+
+    url(r'^bill/fetch/$', 'bill.views.fetch', name='bill_fetch'),
+    url(r'^bill/(\d+)/addTransaction/$', 'bill.views.addTransaction', name='bill_add'),
 )

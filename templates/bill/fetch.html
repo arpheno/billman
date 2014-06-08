@@ -1,0 +1,10 @@
+<ul>
+{% for bill in bills %}
+<li><a href="/bill/{{ bill.id }}/addTransaction/">{{ bill.name }}</a></li>
+{% endfor %}
+</ul>
+
+<form action="" method="post">{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Submit" />
+</form>
