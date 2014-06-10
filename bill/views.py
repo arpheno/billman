@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from bill.models import BillForm
 from bill.models import TransactionForm
-from bill.models import Bill
+from django.forms.formsets import formset_factory
+from django.contrib.auth.models import User
+from bill.models import Bill, Transaction
 
 
 def fetch(request):
@@ -25,16 +27,22 @@ def fetch(request):
 
 
 def addTransaction(request, billId):
-    if request.method == 'POST':  # If the form has been submitted...
-        # ContactForm was defined in the previous section
-        form = TransactionForm(request.POST) # A form bound to the POST data
-        if form.is_valid(): # All validation rules pass
-            # Process the data in form.cleaned_data
-            # ...
-            return HttpResponseRedirect('/thanks/')  # Redirect after POST
-    else:
-        form = TransactionForm()  # An unbound form
+    TransactionFormSet = formset_factory(TransactionForm, extra=2)
+    if request.method == 'POST':
+        formset = TransactionFormSet(request.POST)
+        if formset.is_valid():
+            # do something with the formset.cleaned_data
 
-    return render(request, 'bill/fetch.html', {
-        'form': form,
+            #formset.save()
+
+            #for form in formset:
+            #    transaction = Transaction(Bill(id=form['bill']), User(id=form['user']), owe=form['owe'], pay=form['pay'])
+            #    transaction.save()
+
+            return HttpResponseRedirect('/thanks/')
+    else:
+        formset = TransactionFormSet()
+
+    return render(request, 'bill/addTransaction.html', {
+        'formset': formset,
     })

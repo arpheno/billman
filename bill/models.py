@@ -1,6 +1,6 @@
 from django.db import models
-from django.forms import ModelForm
 from django.contrib.auth.models import User
+from django.forms import ModelForm
 
 
 class Bill(models.Model):
@@ -20,10 +20,14 @@ class Transaction(models.Model):
 class BillForm(ModelForm):
     class Meta:
         model = Bill
-        #fields = ['name', 'transaction']
 
 
 class TransactionForm(ModelForm):
     class Meta:
         model = Transaction
-        #fields = ['name', 'transaction']
+        #fields = ['user', 'owe', 'pay']
+
+    def save(self):
+        formset = Transaction(user=self.cleaned_data['user'],owe=self.cleaned_data['owe'],pay=self.cleaned_data['pay'])
+        formset.save()
+        return formset
